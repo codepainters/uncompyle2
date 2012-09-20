@@ -322,8 +322,12 @@ class Scanner:
             if self.code[i+3] == LOAD_FAST and self.code[i+6] == FOR_ITER: 
                 end = self.first_instr(i, len(self.code), RETURN_VALUE)
                 end = self.first_instr(i, end, YIELD_VALUE)
-                if end and self.code[end+1] == POP_TOP and self.code[end+2] == JA and self.code[end+5] == POP_BLOCK:
-                    return [i,end+5]
+		# At this point 'end' points to YIELD_VALUE
+                if end and self.code[end+1] == POP_TOP and self.code[end+2] == JA:
+                    if self.code[end+5] == POP_BLOCK:
+                        return [i,end+5]
+                    elif self.code[end+5] == POP_TOP and self.code[end+6] == JA and self.code[end+9] == POP_BLOCK:
+                        return [i,end+9]
         # with stmt
         if opcode == WITH_CLEANUP:
             chckDel = i-self.op_size(DELETE_NAME)
