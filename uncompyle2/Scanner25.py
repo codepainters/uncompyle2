@@ -700,8 +700,10 @@ class Scanner:
                 if count_END_FINALLY == count_SETUP_:
                     if self.code[self.prev[i]] == NOP:
                         i = self.prev[i]
-                    assert self.code[self.prev[i]] in (JA, JF, RETURN_VALUE)
-                    return self.prev[i]
+                    # FIXME: this is nto true for some files
+                    #assert self.code[self.prev[i]] in (JA, JF, RETURN_VALUE)
+                    if self.code[self.prev[i]] in (JA, JF, RETURN_VALUE):
+                        return self.prev[i]
                 count_END_FINALLY += 1
             elif op in (SETUP_EXCEPT, SETUP_FINALLY):
                 count_SETUP_ += 1
