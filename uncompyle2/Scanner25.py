@@ -820,7 +820,7 @@ class Scanner:
 
             ## Add the except blocks
             i = end
-            while self.code[i] != END_FINALLY:
+            while i < len(self.code) and self.code[i] != END_FINALLY:
                 jmp = self.next_except_jump(i)
                 if jmp == None: # check
                     i = self.next_stmt[i]
