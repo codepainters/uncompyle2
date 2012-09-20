@@ -309,6 +309,7 @@ class Scanner:
                 start = end
                 while end < len(self.code):
                     end = self.first_instr(end, len(self.code), (DELETE_NAME,DELETE_FAST))
+                    if not end: break
                     if nameDel == self.get_argument(end):
                         toDel += [end]
                         break
