@@ -136,6 +136,7 @@ class Parser(GenericASTBuilder):
         stmt ::= genexpr_func
         
         genexpr_func ::= LOAD_FAST FOR_ITER designator comp_iter JUMP_BACK
+        genexpr_func ::= LOAD_FAST FOR_ITER designator comp_iter JUMP_BACK JUMP_BACK
         '''
 
 
