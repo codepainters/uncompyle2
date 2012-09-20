@@ -91,10 +91,10 @@ class Scanner:
             for x in toDel:
                 if self.code[x-delta] >= dis.HAVE_ARGUMENT:
                     self.code.pop(x-delta)
-                    self.restructCode(x-delta)
+                    self.code.pop(x-delta)
                     self.code.pop(x-delta)
                     self.restructCode(x-delta)
-                    self.code.pop(x-delta)
+                    self.restructCode(x-delta)
                     self.restructCode(x-delta)
                     delta += 3
                 else:
